@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Приглашение на 8 марта</title>
+    <style>
+      /* Оформление формы */
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-top: 0;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      }
+      button[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button[type="submit"]:hover {
+        background-color: #555;
+      }
+      /* Оформление всплывающего окна */
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .popup-inner {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        text-align: center;
+      }
+      .popup-inner p {
+        font-size: 24px;
+        color: #333;
+      }
+      .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Форма для ввода имени -->
+    <form id="invitation-form">
+      <h1>Приглашение на 8 марта</h1>
+      <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+      <button type="submit">Отправить</button>
+    </form>
+    
+    <!-- Всплывающее окно с комплиментом -->
+    <div class="popup">
+      <div class="popup-inner">
+        <p id="compliment"></p>
+        <span class="popup-close">&times;</span>
+      </div>
+    </div>
+
+    <script>
+      // Отслеживаем отправку формы
+      document.querySelector('#invitation-form').addEventListener('submit', function(event) {
+        event
+        event.preventDefault(); // Отменяем стандартное поведение формы
+
+        const name = document.querySelector('#name').value; // Получаем введенное имя
+
+        // Генерируем случайный комплимент
+        const compliments = [
+          `У тебя очень красивое имя, ${name}!`,
+          `Какой умный человек, ${name}!`,
+          `Ты прекрасный человек, ${name}!`,
+          `У тебя такой замечательный настрой, ${name}!`,
+          `Какой ты талантливый человек, ${name}!`,
+          `Я всегда восхищаюсь твоей работой, ${name}!`
+        ];
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+
+        // Вставляем комплимент в всплывающее окно
+        document.querySelector('#compliment').textContent = randomCompliment;
+
+        // Показываем всплывающее окно
+        document.querySelector('.popup').style.display = 'flex';
+      });
+
+      // Закрываем всплывающее окно при клике на кнопку закрытия
+      document.querySelector('.popup-close').addEventListener('click', function() {
+        document.querySelector('.popup').style.display = 'none';
+      });
+    </script>
+  </body>
+</html>
